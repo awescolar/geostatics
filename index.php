@@ -1,7 +1,7 @@
 <?php
 require './core/flight/Flight.php';
 require './core/NotORM/NotORM.php';
-require './core/NotORM/PDOConf.php';
+require './core/NotORM/PDOConfig.php';
 
 $msg = "";
 $list = "";
@@ -11,7 +11,7 @@ Flight::set('flight.handle', false);
 
 //Rota para pagina principal
 Flight::route('/', function(){
-    include './views/index.html';
+    include './view/index.html';
 });
 
 //==========================INSERT==========================//
@@ -183,7 +183,7 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
         //cria um cabeçalho JSON
         //header('Content-Type: application/json');
         //retorna o resultado no formato JSON e adiciona a variavel list
-        $list = json_encode($dados, JSON_PRETTY_PRINT);
+        $list = json_encode($data, JSON_PRETTY_PRINT);
     }
 });
 
@@ -197,7 +197,7 @@ Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
         //cria um cabeçalho JSON
         //header('Content-Type: application/json');
         //retorna os resultados em formato JSON e adiciona a variavél list
-        $list = json_encode($dados, JSON_PRETTY_PRINT);
+        $list = json_encode($data, JSON_PRETTY_PRINT);
     }
 });
 
@@ -211,7 +211,7 @@ Flight::route('/poco/list(/@codigo_unico)', function($codigo_unico){
         //constroi um cabeçalho JSON
         //header('Content_Type: application/json');
         //retorna os resultado em formato JSON e adiciona a variavel list
-        $list = json_encode($dados, JSON_PRETTY_PRINT);
+        $list = json_encode($data, JSON_PRETTY_PRINT);
     }
 });
 
@@ -225,7 +225,7 @@ Flight::route('/coodenadas/list(/@codigo_unico)', function($codigo_unico){
         //cria um cabeçalho JSON
         //header('Content_Type: application/json');
         //retorna todos os poços em JSON
-        $list = json_encode($dados, JSON_PRETTY_PRINT);
+        $list = json_encode($data, JSON_PRETTY_PRINT);
     }
 });
 
