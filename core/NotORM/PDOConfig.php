@@ -1,5 +1,5 @@
 <?php
-    class PDOConf extends PDO{
+    class PDOConfig extends PDO{
         private $engine = "mysql";
         private $host = "127.0.0.1";
         private $database = "geostatics";
