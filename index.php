@@ -3,6 +3,8 @@ require './core/flight/Flight.php';
 require './core/NotORM/NotORM.php';
 require './core/NotORM/PDOConfig.php';
 
+
+
 $msg = "";
 $list = "";
 
@@ -11,8 +13,10 @@ Flight::set('flight.handle', false);
 
 //Rota para pagina principal
 Flight::route('/', function(){
-    include './view/index.html';
+    //include 'view/index.html';
+    echo "Hello World";
 });
+
 
 //==========================INSERT==========================//
 
@@ -26,7 +30,7 @@ Flight::route('POST /poco/insert' , function(){
             'longitude'=> $_POST['longitude']
         )
     );
-   $msg = "Registro de poço realizado com sucesso!"; 
+   $msg = "Registro de poço realizado com sucesso!";
 });
 
 //requisição POST para inserir dados na tabela de casos
@@ -64,7 +68,7 @@ Flight::route('POST /zona/insert', function(){
         array(
             'id' => $_POST['id'],
             'codigo_unico' => $_POST['codigo_unico'],
-            'nome' => $_POST['nome'],   
+            'nome' => $_POST['nome'],
             'area' =>$_POST[
                 $db->coordenadas->insert(
                     array(
@@ -73,9 +77,9 @@ Flight::route('POST /zona/insert', function(){
                         'codigo_unico'=>$_POST['codigo_unico']
                     )
                 )
-            ]        
+            ]
         )
-    ); 
+    );
     $msg = "O cadastro da zona foi realizado com sucesso!";
 });
 
@@ -178,7 +182,7 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
     $db = new NotORM(PDOConfig::getInstance());
     //seleciona todos os dados de medições que correspondem ao id poço
     $data = !isset($P_id) ? $db->medicoes() : $db->medicoes->where("P_id = ?", $P_id);
-    //verifica se retornou dados 
+    //verifica se retornou dados
     if(count($data)){
         //cria um cabeçalho JSON
         //header('Content-Type: application/json');
@@ -296,7 +300,7 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
         $db->zona->update(
             array(
                 'codigo_unico' => $_POST['codigo_unico'],
-                'nome' => $_POST['nome'],  
+                'nome' => $_POST['nome'],
                 'area' =>$_POST[
                     $db->coordenadas->insert(
                         array(
@@ -305,11 +309,13 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
                             'codigo_unico'=>$_POST['codigo_unico']
                         )
                     )
-                ]          
+                ]
             )
         );
     }
 });
+
+*/
 
 Flight::start();
 
