@@ -181,9 +181,11 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
     //verifica se retornou dados 
     if(count($data)){
         //cria um cabeçalho JSON
-        //header('Content-Type: application/json');
+        header('Content-Type: application/json');
         //retorna o resultado no formato JSON e adiciona a variavel list
-        $list = json_encode($data, JSON_PRETTY_PRINT);
+        $list = json_encode($data,JSON_PRETTY_PRINT);
+        echo $list;
+        
     }
 });
 
@@ -195,9 +197,11 @@ Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
     //verifica se retornaram dados
     if(count($data)){
         //cria um cabeçalho JSON
-        //header('Content-Type: application/json');
+        header('Content-Type: application/json');
         //retorna os resultados em formato JSON e adiciona a variavél list
         $list = json_encode($data, JSON_PRETTY_PRINT);
+        echo $list;
+        
     }
 });
 
@@ -209,9 +213,11 @@ Flight::route('/poco/list(/@codigo_unico)', function($codigo_unico){
     //verifica se retornaram dados
     if (count($data)) {
         //constroi um cabeçalho JSON
-        //header('Content_Type: application/json');
+        header('Content_Type: application/json');
         //retorna os resultado em formato JSON e adiciona a variavel list
         $list = json_encode($data, JSON_PRETTY_PRINT);
+        echo $list;
+        
     }
 });
 
@@ -223,9 +229,11 @@ Flight::route('/coodenadas/list(/@codigo_unico)', function($codigo_unico){
     //verifica se algum dado foi retornado
     if(count($data)){
         //cria um cabeçalho JSON
-        //header('Content_Type: application/json');
+        header('Content_Type: application/json');
         //retorna todos os poços em JSON
         $list = json_encode($data, JSON_PRETTY_PRINT);
+        echo $list;
+        
     }
 });
 
@@ -311,6 +319,8 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
     }
 });
 
+
 Flight::start();
 
 ?>
+
