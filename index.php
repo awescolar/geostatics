@@ -3,6 +3,8 @@ require './core/flight/Flight.php';
 require './core/NotORM/NotORM.php';
 require './core/NotORM/PDOConfig.php';
 
+
+
 $msg = "";
 $list = "";
 
@@ -11,8 +13,9 @@ Flight::set('flight.handle', false);
 
 //Rota para pagina principal
 Flight::route('/', function(){
-    include './view/index.html';
+    include 'view/index.html';
 });
+
 
 //==========================INSERT==========================//
 
@@ -26,7 +29,7 @@ Flight::route('POST /poco/insert' , function(){
             'longitude'=> $_POST['longitude']
         )
     );
-   $msg = "Registro de poço realizado com sucesso!"; 
+   $msg = "Registro de poço realizado com sucesso!";
 });
 
 //requisição POST para inserir dados na tabela de casos
@@ -64,7 +67,7 @@ Flight::route('POST /zona/insert', function(){
         array(
             'id' => $_POST['id'],
             'codigo_unico' => $_POST['codigo_unico'],
-            'nome' => $_POST['nome'],   
+            'nome' => $_POST['nome'],
             'area' =>$_POST[
                 $db->coordenadas->insert(
                     array(
@@ -73,9 +76,9 @@ Flight::route('POST /zona/insert', function(){
                         'codigo_unico'=>$_POST['codigo_unico']
                     )
                 )
-            ]        
+            ]
         )
-    ); 
+    );
     $msg = "O cadastro da zona foi realizado com sucesso!";
 });
 
@@ -178,14 +181,12 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
     $db = new NotORM(PDOConfig::getInstance());
     //seleciona todos os dados de medições que correspondem ao id poço
     $data = !isset($P_id) ? $db->medicoes() : $db->medicoes->where("P_id = ?", $P_id);
-    //verifica se retornou dados 
+    //verifica se retornou dados
     if(count($data)){
         //cria um cabeçalho JSON
         header('Content-Type: application/json');
         //retorna o resultado no formato JSON e adiciona a variavel list
-        $list = json_encode($data,JSON_PRETTY_PRINT);
-        echo $list;
-        
+        echo json_encode($data,JSON_PRETTY_PRINT);
     }
 });
 
@@ -199,9 +200,7 @@ Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
         //cria um cabeçalho JSON
         header('Content-Type: application/json');
         //retorna os resultados em formato JSON e adiciona a variavél list
-        $list = json_encode($data, JSON_PRETTY_PRINT);
-        echo $list;
-        
+        echo json_encode($data, JSON_PRETTY_PRINT);
     }
 });
 
@@ -216,7 +215,6 @@ Flight::route('/poco/list(/@codigo_unico)', function($codigo_unico){
         header('Content_Type: application/json');
         //retorna os resultado em formato JSON e adiciona a variavel list
         $list = json_encode($data, JSON_PRETTY_PRINT);
-        echo $list;
         
     }
 });
@@ -232,7 +230,6 @@ Flight::route('/coodenadas/list(/@codigo_unico)', function($codigo_unico){
         header('Content_Type: application/json');
         //retorna todos os poços em JSON
         $list = json_encode($data, JSON_PRETTY_PRINT);
-        echo $list;
         
     }
 });
@@ -304,7 +301,7 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
         $db->zona->update(
             array(
                 'codigo_unico' => $_POST['codigo_unico'],
-                'nome' => $_POST['nome'],  
+                'nome' => $_POST['nome'],
                 'area' =>$_POST[
                     $db->coordenadas->insert(
                         array(
@@ -313,12 +310,15 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
                             'codigo_unico'=>$_POST['codigo_unico']
                         )
                     )
-                ]          
+                ]
             )
         );
     }
 });
-
+//pegar arquivos
+Flight::route('/pegararquivos', function(){
+    echo "helo word";
+});
 
 Flight::start();
 
