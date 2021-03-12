@@ -191,17 +191,24 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
     }
 });
 
-//listar os casos em determinada zona em JSON
+/**
+* LISTA DE CASOS FILTRADOS
+* serão listados todos os casos com filtro ou se o codigo vier nulo será
+* retornado todos os casos ordenados pela data de forma descrescente
+*/
 Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
     $db = new NotORM(PDOConfig::getInstance());
     //seleciona todos os dados de casos que correspondem a uma determinada zona
-    $data = !isset($codigo_unico) ? $db->casos() : $db->casos->where("codigo_zona = ?", $codigo_unico);
+    $data = !isset($codigo_unico) ? $db->casos() : $db->casos->where("codigo_zona = ?", $codigo_unico)->order("data desc");
+    //$data = $db->casos();
     //verifica se retornaram dados
     if(count($data)){
         //cria um cabeçalho JSON
-        //header('Content-Type: application/json');
         //retorna os resultados em formato JSON e adiciona a variavél list
-        $list = json_encode($data, JSON_PRETTY_PRINT);
+        header('Content-Type: application/json');
+        echo json_encode($data, JSON_PRETTY_PRINT);
+    }else{
+      echo "não há dados";
     }
 });
 
@@ -315,7 +322,7 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
     }
 });
 
-*/
+
 
 Flight::start();
 
