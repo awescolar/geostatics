@@ -2,14 +2,14 @@
     class PDOConfig extends PDO{
         private $engine = "mysql";
         private $host = "127.0.0.1";
-        private $database = "geostatics";
+        private $database = "geostatics.sqlite";
         private $user = "root";
         private $pass = "";
 
         static private $instance = null;
 
-        static public function getInstance(){
-            if(null === self::$instance){
+        static public function getInstance() {
+            if (null === self::$instance){
                 $cl = __CLASS__;
                 self::$instance = new $cl;
             }
@@ -17,7 +17,7 @@
         }
 
         public function __construct(){
-            $dns = $this->engire . ':dbname=' . $this->database . ";host=" . $this->host;
+            $dns = $this->engine . ':dbname=' . $this->database . ";host=" . $this->host;
             parent::__construct($dns, $this->user, $this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         }
 

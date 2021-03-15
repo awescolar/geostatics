@@ -186,15 +186,15 @@ Flight::route('/medicoes/list(/@P_id)', function($P_id){
         //cria um cabeçalho JSON
         header('Content-Type: application/json');
         //retorna o resultado no formato JSON e adiciona a variavel list
-        echo json_encode($data,JSON_PRETTY_PRINT);
+        $list = json_encode($data,JSON_PRETTY_PRINT);
     }
 });
 
 //listar os casos em determinada zona em JSON
-Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
+Flight::route('/casos/list(/@codigo_zona)', function($codigo_unico){
     $db = new NotORM(PDOConfig::getInstance());
     //seleciona todos os dados de casos que correspondem a uma determinada zona
-    $data = !isset($codigo_unico) ? $db->casos() : $db->casos->where("codigo_zona = ?", $codigo_unico);
+    $data = !isset($codigo_unico) ? $db->casos() : $db->casos->where("codigo_zona = ?", $codigo_unico)->order("data desc");
     //verifica se retornaram dados
     if(count($data)){
         //cria um cabeçalho JSON
@@ -203,7 +203,6 @@ Flight::route('/casos/list(/@codigo_unico)', function($codigo_unico){
         echo json_encode($data, JSON_PRETTY_PRINT);
     }
 });
-
 //listar as pocos em determinada zona em JSON
 Flight::route('/poco/list(/@codigo_unico)', function($codigo_unico){
     $db = new NotORM(PDOConfig::getInstance());
@@ -214,13 +213,13 @@ Flight::route('/poco/list(/@codigo_unico)', function($codigo_unico){
         //constroi um cabeçalho JSON
         header('Content_Type: application/json');
         //retorna os resultado em formato JSON e adiciona a variavel list
-        $list = json_encode($data, JSON_PRETTY_PRINT);
+        $list= json_encode($data, JSON_PRETTY_PRINT);
         
     }
 });
 
 //listar todas as coordenadas de uma zona
-Flight::route('/coodenadas/list(/@codigo_unico)', function($codigo_unico){
+Flight::route('/coordenadas/list(/@codigo_unico)', function($codigo_unico){
     $db = new NotORM(PDOConfig::getInstance());
     //seleciona todas as coordenadas que fazem referencia a uma determinada zona
     $data = !isset($codigo_unico) ? $db->coordenadas() : $db->coordenadas->where("codigo_unico = ?", $codigo_unico);
@@ -314,10 +313,6 @@ Flight::route('POST /zona/update/@codigo_unico', function($codigo_unico){
             )
         );
     }
-});
-//pegar arquivos
-Flight::route('/pegararquivos', function(){
-    echo "helo word";
 });
 
 Flight::start();
