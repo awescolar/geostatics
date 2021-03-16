@@ -47,9 +47,21 @@ INSERT INTO `casos` (`id`, `data`, `nome`, `codigo_zona`) VALUES
 (3, '2020-10-06', 'diarreia', 'zn04'),
 (4, '2021-01-11', 'disenteria bacteriana', 'zn02'),
 (5, '2021-01-11', 'cólera', 'zn02'),
-(6, '2020-12-08', 'disenteria bacteriana', 'zn03'),
+(6, '2020-12-08', 'disenteria bacteriana', 'zn01'),
 (7, '2020-11-19', 'hepatite A', 'zn05'),
-(8, '2020-11-19', 'cólera', 'zn05');
+(8, '2020-11-19', 'cólera', 'zn05'),
+(9, '2021-06-05', 'disenteria bacteriana', 'zn06'),
+(10, '2020-11-06', 'síndrome do bebê azul', 'zn04'),
+(11, '2020-09-06', 'diarreia', 'zn04'),
+(12, '2020-01-11', 'disenteria bacteriana', 'zn02'),
+(13, '2021-11-11', 'cólera', 'zn03'),
+(14, '2021-02-08', 'disenteria bacteriana', 'zn03'),
+(15, '2020-04-19', 'hepatite A', 'zn05'),
+(16, '2021-07-19', 'cólera', 'zn05'),
+(17, '2021-03-11', 'cólera', 'zn03'),
+(18, '2021-05-08', 'disenteria bacteriana', 'zn01'),
+(19, '2021-05-19', 'hepatite A', 'zn05'),
+(20, '2020-09-19', 'cólera', 'zn06');
 
 -- --------------------------------------------------------
 
@@ -59,8 +71,8 @@ INSERT INTO `casos` (`id`, `data`, `nome`, `codigo_zona`) VALUES
 
 DROP TABLE IF EXISTS `coordenadas`;
 CREATE TABLE IF NOT EXISTS `coordenadas` (
-  `latitude` float(10,6) NOT NULL,
-  `longitude` float(10,6) NOT NULL,
+  `lat` float(10,6) NOT NULL,
+  `lng` float(10,6) NOT NULL,
   `codigo_unico` varchar(11) NOT NULL,
   KEY `codigo_unico_fk` (`codigo_unico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -69,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `coordenadas` (
 -- Extraindo dados da tabela `coordenadas`
 --
 
-INSERT INTO `coordenadas` (`latitude`, `longitude`, `codigo_unico`) VALUES
+INSERT INTO `coordenadas` (`lat`, `lng`, `codigo_unico`) VALUES
 (-5.665915, -35.417622, 'zn01'),
 (-5.665573, -35.421741, 'zn01'),
 (-5.664655, -35.421997, 'zn01'),
@@ -103,7 +115,6 @@ INSERT INTO `coordenadas` (`latitude`, `longitude`, `codigo_unico`) VALUES
 (-5.630799, -35.436115, 'zn04'),
 (-5.630713, -35.427170, 'zn04'),
 (-5.639383, -35.427750, 'zn04'),
-(-5.656690, 35.435612, 'zn05'),
 (-5.655195, -35.436382, 'zn05'),
 (-5.653231, -35.435955, 'zn05'),
 (-5.653017, -35.436428, 'zn05'),
@@ -233,8 +244,8 @@ DROP TABLE IF EXISTS `poco`;
 CREATE TABLE IF NOT EXISTS `poco` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_unico` varchar(11) NOT NULL,
-  `latitude` float(10,6) NOT NULL,
-  `longitude` float(10,6) NOT NULL,
+  `lat` float(10,6) NOT NULL,
+  `lng` float(10,6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `codigo_unico_f` (`codigo_unico`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
@@ -243,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `poco` (
 -- Extraindo dados da tabela `poco`
 --
 
-INSERT INTO `poco` (`id`, `codigo_unico`, `latitude`, `longitude`) VALUES
+INSERT INTO `poco` (`id`, `codigo_unico`, `lat`, `lng`) VALUES
 (5, 'zn01', -5.651822, -35.432037),
 (6, 'zn01', -5.650818, -35.430195),
 (7, 'zn01', -5.652057, -35.429462),

@@ -9931,8 +9931,70 @@ h3 {
 /**
 Arquivo de configuracao CSS do projeto
 */
-.body {
-  color: red;
+#barraLat {
+  background-color: rgba(255, 255, 255, 0.712);
+  border-radius: 0% 0% 40% 0%;
+  padding-left: 3%;
+  padding-right: 5%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.719);
+}
+
+#linha {
+  background-color: rgba(161, 60, 255, 0.26);
+}
+
+#dataAnl {
+  font-size: 70%;
+}
+
+#cpr {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.btn {
+  border-radius: 25px;
+  text-align: left;
+  color: white;
+}
+.btn:hover {
+  color: white;
+}
+.btn:hover .ic {
+  opacity: 1;
+}
+
+.ic {
+  opacity: 0;
+  padding-left: 130px;
+}
+
+span {
+  color: black;
+}
+
+#btn1 {
+  background-color: #8A7BE5;
+}
+
+#btn2 {
+  background-color: #6657BF;
+}
+
+#btn3 {
+  background-color: #e45b1b;
+}
+
+#btn4 {
+  background-color: #FF914D;
+}
+
+#btn5 {
+  background-color: #71D39A;
+}
+
+#btn6 {
+  background-color: #00ff9d;
 }
 
 /*# sourceMappingURL=style.min.css.map */

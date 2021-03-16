@@ -3,15 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="./view/css/style.min.css">
     <script src="./view/js/arq.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>GeoStatics</title>
 </head>
 <body>
+    <!--Div que recebe o mapa-->
     <div id ="map" class="w-100 h-100 position-absolute">
+    </div>
+    <!--Div Barra de informações-->
+    <div class="row">
+        <div class="col-5 pt-3 pb-5" id="barraLat">
+            <!--Cabeçalho-->
+            <h2>Estatísticas Gerais</h2>
+            <p class="mt-n2">Projeto Geostatics</p>
+            <hr id="linha" class="mt-n1">
+            <!--Análises e problemas relatados-->
+            <div class="row mt-n2">
+                <div class="col-5">
+                    <p>Problemas Relatados</p>
+                    <h5 id="qtdPR" class="mt-n3">43</h5>
+                </div>
+                <div class="col- ml-4">
+                    <p>Análises Realizadas</p>
+                    <h5 id="qtdAnl" class="position absolute mt-n3"> </h5>
+                    <b><p id="dataAnl" class="mt-n4 pl-4" ></p></b>
+                </div>
+            </div>
+            
+            <!--Titulo Casos por região -->
+            <p id="cpr" class="col-8 p-2 mb-4 mt-2"> <img src="./view/css/icons/001-kit-mdico.png" width="20" class="pb-1 ml-2"> Casos por região</p>
+            <!--Área dos butões-->
+            <div>
+                <button class="btn col-10 mb-2" id="btn1" onclick="btn1(1)"><b>Zona 01 </b><span id="caso1">s</span><img src="./view/css/icons/ic1.png" id="ic1" class="ic mt-n5" height="35"></button>
+                <button class="btn col-10 mb-2" id="btn2" onclick="btn2(1)"><b>Zona 02 </b><span id="caso2">s</span><img src="./view/css/icons/ic2.png" id="ic2" class="ic mt-n5" height="35"></button>
+                <button class="btn col-9 mb-2" id="btn3" onclick="btn3(1)"><b>Zona 03 </b><span id="caso3">5</span><img src="./view/css/icons/ic3.png" id="ic3" class="ic mt-n5" height="35"></button>
+                <button class="btn col-9 mb-2" id="btn4" onclick="btn4(1)"><b>Zona 04 </b><span id="caso4">4</span><img src="./view/css/icons/ic4.png" id="ic4" class="ic mt-n5" height="35"></button>
+                <button class="btn col-8 mb-2" id="btn5" onclick="btn5(1)"><b>Zona 05 </b><span id="caso5">f</span><img src="./view/css/icons/ic5.png" id="ic5" class="ic mt-n5" height="35"></button>
+                <button class="btn col-8 mb-2" id="btn6" onclick="btn6(1)"><b>Zona 06 </b><span id="caso6">f</span><img src="./view/css/icons/ic6.png" id="ic6" class="ic mt-n5" height="35"></button>
+            </div>
+        </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwPDZP0PTnhrpv339qXMKXV3XX39FbSZc&callback=initMap" async defer></script>
 </body>
