@@ -9966,7 +9966,7 @@ Arquivo de configuracao CSS do projeto
 
 .ic {
   opacity: 0;
-  padding-left: 130px;
+  float: right;
 }
 
 span {

@@ -171,23 +171,33 @@ xmlhttp8.send();
 //Criando polígonos com os botões
 
 //Botão 1
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn1(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic1").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ1 !== 'undefined'){
+                    polZ1.setMap(null);
+                }
+                //Cria o polígono
                 polZ1 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#8A7BE5",
                     fillColor: "#8A7BE5",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ1.setMap(map);
                 btn2(2);
                 btn3(2);
@@ -198,9 +208,10 @@ function btn1(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn01", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if(typeof polZ1.getMap() === 'undefined'){
+        if(typeof polZ1 === 'undefined'){
         }else{
             polZ1.setMap(null);
             document.getElementById("ic1").style.opacity= 0;
@@ -209,23 +220,33 @@ function btn1(x){
 }
 
 //Botão 2
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn2(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic2").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ2 !== 'undefined'){
+                    polZ2.setMap(null);
+                }
+                //Cria o polígono
                 polZ2 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#6657BF",
                     fillColor: "#6657BF",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ2.setMap(map);
                 btn1(2);
                 btn3(2);
@@ -236,9 +257,10 @@ function btn2(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn02", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if( typeof polZ2.getMap() === 'undefined'){
+        if( typeof polZ2 === 'undefined'){
             
         }else{
             polZ2.setMap(null);
@@ -248,23 +270,33 @@ function btn2(x){
 }
 
 //Botão 3
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn3(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic3").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ3 !== 'undefined'){
+                    polZ3.setMap(null);
+                }
+                //Cria o polígono
                 polZ3 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#e45b1b",
                     fillColor: "#e45b1b",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ3.setMap(map);
                 btn2(2);
                 btn1(2);
@@ -275,9 +307,10 @@ function btn3(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn03", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if( typeof polZ3.getMap() === 'undefined'){
+        if( typeof polZ3 === 'undefined'){
         }else{
             polZ3.setMap(null);
             document.getElementById("ic3").style.opacity= 0;
@@ -286,23 +319,33 @@ function btn3(x){
 }
 
 //Botão 4
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn4(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic4").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ4 !== 'undefined'){
+                    polZ4.setMap(null);
+                }
+                //Cria o polígono
                 polZ4 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#FF914D",
                     fillColor: "#FF914D",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ4.setMap(map);
                 btn1(2);
                 btn3(2);
@@ -313,9 +356,10 @@ function btn4(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn04", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if( typeof polZ4.getMap() === 'undefined'){
+        if( typeof polZ4 === 'undefined'){
         }else{
             polZ4.setMap(null);
             document.getElementById("ic4").style.opacity= 0;
@@ -326,23 +370,33 @@ function btn4(x){
 }
 
 //Botão 5
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn5(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic5").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ5 !== 'undefined'){
+                    polZ5.setMap(null);
+                }
+                //Cria o polígono
                 polZ5 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#71D39A",
                     fillColor: "#71D39A",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ5.setMap(map);
                 btn1(2);
                 btn3(2);
@@ -353,9 +407,10 @@ function btn5(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn05", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if( typeof polZ5.getMap() === 'undefined'){
+        if( typeof polZ5 === 'undefined'){
         }else{
             polZ5.setMap(null);
             document.getElementById("ic5").style.opacity= 0;
@@ -364,23 +419,33 @@ function btn5(x){
 }
 
 //Botão 6
+//O parâmetro x identifica se a função está sendo chamada pelo seu respectivo botão ou por outro
 function btn6(x){
     if(x==1){
+        //Mostra o marcador do botão quando ele está ativo
         document.getElementById("ic6").style.opacity= 1;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                //Tranforma a resposta http em array JS
                 myObj = JSON.parse(this.responseText);
+                //Tranforma a lat e lng em número para que seja possível criar o polígono
                 for (i = 0 ; i < myObj.length; i++){
                     myObj[i].lat= parseFloat(myObj[i].lat); 
                     myObj[i].lng= parseFloat(myObj[i].lng); 
                 }
+                //Identifica se já existe esse polígono, evitando que caso o button seja clicado duas vezes o polígono seja sobreescrito
+                if(typeof polZ6 !== 'undefined'){
+                    polZ6.setMap(null);
+                }
+                //Cria o polígono
                 polZ6 = new google.maps.Polygon({
                     paths: myObj,
                     strokeColor:"#00ff9d",
                     fillColor: "#00ff9d",
                     fillOpacity: 0.5,
                 });
+                //Insere o polígono no mapa e apaga outros caso existam
                 polZ6.setMap(map);
                 btn1(2);
                 btn3(2);
@@ -391,9 +456,10 @@ function btn6(x){
         };
         xmlhttp.open("GET", "http://localhost/geostatics/coordenadas/list/zn06", true);       
         xmlhttp.send(); 
-
+    //Caso outros polígonos sejam criados:
+    //Indentifica se esse polígono existe e se existir o apaga e tira o marcador do botão
     }else if(x==2){
-        if( typeof polZ6.getMap() === 'undefined'){
+        if( typeof polZ6 === 'undefined'){
         }else{
             polZ6.setMap(null);
             document.getElementById("ic6").style.opacity= 0;
